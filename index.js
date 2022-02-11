@@ -1,13 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const dotenv = require('dotenv');
-dotenv.config();
 
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
-client.login(process.env.DISCORD_API_KEY);
+client.login('NzU5MTczMjMzNDI1MTIxMzEx.X25pKw.S5gyYc9gE_Gg3dwnaTkSQYjXtDQ');
 
 client.on('message', message => {
     try {
@@ -21,7 +19,7 @@ client.on('message', message => {
                     let role       = guild.roles.cache.find(role => role.name === teamName)
                     // Edge Cases
                     if (!teamName.match(/^[0-9]*$/)) {
-                        message.reply("Please make sure your team name is alphanumeric! (a-z, 0-9)")
+                        message.reply("Please make sure your team name is numeric!")
                         return true
                     }
                     if ((teamName.toLowerCase().includes("mentor")
@@ -72,7 +70,7 @@ client.on('message', message => {
                                         allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS', 'ATTACH_FILES', 'EMBED_LINKS', 'MENTION_EVERYONE']
                                     },
                                     {
-                                        id: guild.roles.cache.find(role => role.name === "mentor").id,
+                                        id: guild.roles.cache.find(role => role.name === "Mentors").id,
                                         allow: ['VIEW_CHANNEL', 'SEND_MESSAGES', 'CONNECT', 'SPEAK', 'STREAM', 'USE_VAD', 'READ_MESSAGE_HISTORY', 'ADD_REACTIONS', 'ATTACH_FILES', 'EMBED_LINKS', 'MENTION_EVERYONE']
                                     }
                                 ],
@@ -113,7 +111,7 @@ client.on('message', message => {
                 member.voice.kick()
                 for (let i = 0; i < roles.length; i++) {
                     const role = roles[i]
-                    if (role.id !== guild.roles.everyone.id && role.name !== "Admin" && role.name !== "Organizer" && role.name !== "mentor" && role.name !== "staff" && role.name !== "Team Mentor" && role.name !== "HTML Mentor" && role.name !== "Flutter Mentor") {
+                    if (role.id !== guild.roles.everyone.id && role.name !== "Admin" && role.name !== "Organizers" && role.name !== "mentor" && role.name !== "staff" && role.name !== "Team Mentor" && role.name !== "HTML Mentor" && role.name !== "Flutter Mentor") {
                         member.roles.remove(role)
                         const members = role.members.array()
                         let count = 0
